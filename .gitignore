@@ -1,0 +1,7 @@
+gta
+output/
+results/
+__pycache__/
+*.egg-info/
+latents/
+temp_img.png

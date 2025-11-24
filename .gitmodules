@@ -1,0 +1,4 @@
+[submodule "CACTIF"]
+	path = CACTIF
+	url = git@github.com:echigot/CACTIF.git
+	branch = diffusers-0.34
