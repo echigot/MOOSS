@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "MOOSS"
 version = "0.1.0"
-description = "Augmentation pipeline using ControlNet, CACTI and style transfer methods"
+description = "Multi-Objective Optimization for Synthetic-to-Real Style Transfer"
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
@@ -13,9 +13,9 @@ license-files = ["LICEN[CS]E*"]
 
 
 [project.urls]
-Homepage = "https://github.com/echigot/mooss"
-Repository = "https://github.com/echigot/mooss"
-Documentation = "https://github.com/echigot/mooss"
+Homepage = "https://github.com/xxxxx/mooss"
+Repository = "https://github.com/xxxxx/mooss"
+Documentation = "https://github.com/xxxxx/mooss"
 
 [tool.setuptools]
 packages = ["mooss", "CACTIF"]
