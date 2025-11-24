@@ -25,10 +25,7 @@ from mooss.config import (
 
 from mooss.optimization import run_optimization
 from mooss.augmentation import generate_augmented_dataset
-from apply_optim_solution import apply_augmentation_sequence
 
-
-import numpy as np
 from mooss.metrics import compute_cmmd
 import tempfile
 import shutil
@@ -231,7 +228,7 @@ def run_daformer_training(work_dir: Path):
         return True
         
     except subprocess.CalledProcessError as e:
-        print(f"  ❌ Training failed: {e}")
+        print(f"  Training failed: {e}")
         return False
         
     finally:
@@ -277,20 +274,20 @@ def main():
         solution_id, aug_sequence, hyperparams, aug_indices = get_optimal_solution(data)
         
         if solution_id is None:
-            print("  ❌ Aucune solution trouvée")
+            print("  Aucune solution trouvée")
             sys.exit(1)
         
         if data.get('pareto_front', {}).get('solutions', [])[solution_id - 1].get('is_optimal', False):
             print(f"  ✓ Solution optimale trouvée (ID: {solution_id})")
         else:
-            print(f"  ⚠️  Utilisation de la meilleure solution (ID: {solution_id})")
+            print(f"  Utilisation de la meilleure solution (ID: {solution_id})")
         
         print(f"  → Séquence: {' -> '.join(aug_sequence)}")
         if hyperparams:
             print(f"  → Hyperparamètres: {hyperparams}")
         
     except Exception as e:
-        print(f"  ❌ Erreur lors du chargement: {e}")
+        print(f"  Erreur lors du chargement: {e}")
         sys.exit(1)
     
     # ========================================
@@ -310,14 +307,14 @@ def main():
         label_dir = Path("var_home/datasets/gta_crop/labels")
         
         if not label_dir.exists():
-            print(f"  ⚠️  Source labels not found: {label_dir}")
+            print(f"  Source labels not found: {label_dir}")
             
         # Create symbolic link
         if not labels_symlink.exists():
             labels_symlink.symlink_to(label_dir)
             print(f"  ✓ Lien symbolique créé: {labels_symlink} -> {label_dir}")
         else:
-            print(f"  ⚠️  Lien symbolique existe déjà: {labels_symlink}")
+            print(f"  Lien symbolique existe déjà: {labels_symlink}")
     
         # Count generated images
         n_generated = len(list((dataset_output / "images").glob("*.png")))
@@ -325,7 +322,7 @@ def main():
         print(f"  ✓ Chemin: {dataset_output}")
         
     except Exception as e:
-        print(f"  ❌ Erreur lors de la génération: {e}")
+        print(f"  Erreur lors de la génération: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)
@@ -373,7 +370,7 @@ def main():
         print(f"\n  ✓ Résultats sauvegardés dans final_evaluation.json")
         
     except Exception as e:
-        print(f"  ❌ Erreur lors de l'évaluation: {e}")
+        print(f"  Erreur lors de l'évaluation: {e}")
         import traceback
         traceback.print_exc()
 
@@ -398,15 +395,15 @@ def main():
             if training_success:
                 print("  ✓ Entraînement terminé")
             else:
-                print("  ❌ Entraînement échoué")
+                print("  Entraînement échoué")
         else:
-            print("  ⏭️  Entraînement ignoré")
+            print("  Entraînement ignoré")
             print(f"\n  Pour lancer manuellement:")
             print(f"    cd var_home/DAFormer")
             print(f"    python run_experiments.py --exp 11")
         
     except Exception as e:
-        print(f"  ❌ Erreur DAFormer: {e}")
+        print(f"  Erreur DAFormer: {e}")
         import traceback
         traceback.print_exc()
 
@@ -420,7 +417,7 @@ def main():
         try:
             cmmd_score = compute_and_save_cmmd(dataset_output, OUTPUT_BASE_DIR, N_IMAGES_TRAIN)
         except Exception as e:
-            print(f"  ❌ Erreur: {e}")
+            print(f"  Erreur: {e}")
             import traceback
             traceback.print_exc()
     else:
@@ -473,10 +470,10 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n⚠️  Pipeline interrompu par l'utilisateur")
+        print("\n\nPipeline interrompu par l'utilisateur")
         sys.exit(1)
     except Exception as e:
-        print(f"\n\n❌ Erreur fatale: {e}")
+        print(f"\n\nErreur fatale: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)

@@ -52,7 +52,7 @@ def sequence_to_indices(aug_sequence_names: list) -> list:
     indices = []
     for name in aug_sequence_names:
         if name not in name_to_idx:
-            print(f"  ❌ Augmentation inconnue: {name}")
+            print(f"  Augmentation inconnue: {name}")
             print(f"  → Disponibles: {list(name_to_idx.keys())}")
             sys.exit(1)
         indices.append(name_to_idx[name])
@@ -176,7 +176,7 @@ def run_daformer_training():
         print("  ✓ Entraînement terminé")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"  ❌ Échec: {e}")
+        print(f"  Échec: {e}")
         return False
     finally:
         os.chdir(original_dir)
@@ -229,7 +229,7 @@ def main():
         print(f"  ✓ {n_generated} images générées dans {dataset_output}")
         
     except Exception as e:
-        print(f"  ❌ Erreur: {e}")
+        print(f"  Erreur: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)
@@ -245,12 +245,12 @@ def main():
         if RUN_TRAINING:
             training_success = run_daformer_training()
             if not training_success:
-                print("  ⚠️  Entraînement échoué, continuation...")
+                print("  Entraînement échoué, continuation...")
         else:
-            print("  ⏭️  Entraînement ignoré (RUN_TRAINING=False)")
+            print("  Entraînement ignoré (RUN_TRAINING=False)")
             
     except Exception as e:
-        print(f"  ❌ Erreur: {e}")
+        print(f"  Erreur: {e}")
         import traceback
         traceback.print_exc()
     
@@ -264,11 +264,11 @@ def main():
         try:
             cmmd_score = compute_and_save_cmmd(dataset_output, dataset_output, args.n_images)
         except Exception as e:
-            print(f"  ❌ Erreur: {e}")
+            print(f"  Erreur: {e}")
             import traceback
             traceback.print_exc()
     else:
-        print("  ⏭️  CMMD ignoré (RUN_CMMD=False)")
+        print("  CMMD ignoré (RUN_CMMD=False)")
     
     # ========================================
     # SUMMARY
@@ -287,10 +287,10 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n⚠️  Interrompu")
+        print("\n\nInterrompu")
         sys.exit(1)
     except Exception as e:
-        print(f"\n\n❌ Erreur: {e}")
+        print(f"\n\nErreur: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)
