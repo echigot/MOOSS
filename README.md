@@ -1,5 +1,5 @@
 ```
-git clone --recurse-submodules git@github.com:echigot/MOOSS.git
+git clone --recurse-submodules git@github.com:xxxxx/MOOSS.git
 conda create -n mooss python=3.12.11
 conda activate mooss
 cd MOOSS
