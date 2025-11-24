@@ -10,9 +10,6 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
-authors = [
-    {name = "Estelle", email = "estelle.chigot2@isae.fr"}
-]
 
 
 [project.urls]
